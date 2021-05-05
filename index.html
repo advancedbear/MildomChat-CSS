@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mildom Chat CSS Generator</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/mildom.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP&family=RocknRoll+One&family=Stick&family=Yusei+Magic&display=swap');
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body style="overflow: unset !important;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3>Mildom Chat CSS Generator</h3>
+                <p>
+                    1. OBSのブラウザソースに「https://www.mildom.com/ユーザID」を指定します。<br/>
+                    2. 横幅を800px以上に指定します。（高さは任意で良い）<br />
+                    3. そのまま追加し、「対話」ウィンドウからブラウザソース内のミルダムをミュートにします。<br />
+                    4. 改めてブラウザソースのカスタムCSSに、本サイトで生成したCSSを追加します。
+                </p>
+            </div>
+            <div class="col l12 xl5">
+                <h4>Config</h4>
+                <div class="row">
+                    <h5>表示設定</h5>
+                    <div class="col s12">
+                        <label>横幅</label>
+                        <select class="browser-default" id="width_size">
+                            <option value="160px">160px</option>
+                            <option value="240px">240px</option>
+                            <option value="370px" selected>370px (Default)</option>
+                            <option value="420px">420px</option>
+                            <option value="540px">540px</option>
+                            <option value="720px">720px</option>
+                            <option value="100%">横幅いっぱい</option>
+                        </select>
+                        <p class="valign-wrapper teal-text">
+                            <i class="material-icons">help_outline</i>
+                            横幅いっぱいの場合OBSで幅を調整します。<br>プレビューでは460px以上は反映されません。
+                        </p>
+                    </div>
+                    <div class="col s6">
+                        <p>
+                            <label class="black-text">
+                                <input type="checkbox" class="filled-in" id="level_bool" checked="checked" />
+                                <span>レベル表示</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s6">
+                        <p>
+                            <label class="black-text">
+                                <input type="checkbox" class="filled-in" id="sender_bool" checked="checked" />
+                                <span>ユーザ名表示</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s6">
+                        <p>
+                            <label class="black-text">
+                                <input type="checkbox" class="filled-in" id="separator_bool" checked="checked" />
+                                <span>「：」表示</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s6">
+                        <p>
+                            <label class="black-text">
+                                <input type="checkbox" class="filled-in" id="streamer_bool" checked="checked" />
+                                <span>配信者アイコン表示</span>
+                            </label class="black-text">
+                        </p>
+                    </div>
+                    <div class="col s6">
+                        <p>
+                            <label class="black-text">
+                                <input type="checkbox" class="filled-in" id="admin_bool" checked="checked" />
+                                <span>管理人アイコン表示</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s6">
+                        <p>
+                            <label class="black-text">
+                                <input type="checkbox" class="filled-in" id="subscribe_bool" checked="checked" />
+                                <span>サブスクアイコン表示</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s6">
+                        <p>
+                            <label class="black-text">
+                                <input type="checkbox" class="filled-in" id="entered_bool" checked="checked" />
+                                <span>入室メッセージ表示</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s12">
+                        <p class="valign-wrapper teal-text">
+                            <i class="material-icons">help_outline</i>
+                            「：」を消すと入室メッセージも消えます
+                        </p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <h5>色設定</h5>
+                    <div class="col s12">
+                        <span class="valign-wrapper">
+                            <input type="color" id="sender_color" name="sender_color" value="#AAAAAA">
+                            <label class="black-text color_label" for="sender_color">
+                                <span>ユーザ名の色</span>
+                            </label>
+                            <span class="center-align">
+                                <a class="waves-effect waves-teal btn-floating btn-flat tooltipped" data-position="top"
+                                    data-tooltip="Default" onclick="sender_color_reset()"><i
+                                        class="material-icons black-text">replay</i></a>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col s12">
+                        <span class="valign-wrapper">
+                            <input type="color" id="separator_color" name="separator_color" value="#9f9f9f">
+                            <label class="black-text color_label" for="separator_color">
+                                <span>「：」の色</span>
+                            </label>
+                            <span class="center-align">
+                                <a class="waves-effect waves-teal btn-floating btn-flat tooltipped" data-position="top"
+                                    data-tooltip="Default" onclick="separator_color_reset()"><i
+                                        class="material-icons black-text">replay</i></a>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col s12">
+                        <span class="valign-wrapper">
+                            <input type="color" id="text_color" name="text_color" value="#AAAAAA">
+                            <label class="black-text color_label" for="text_color">
+                                <span>コメント本文の色</span>
+                            </label>
+                            <span class="center-align">
+                                <a class="waves-effect waves-teal btn-floating btn-flat tooltipped" data-position="top"
+                                    data-tooltip="Default" onclick="text_color_reset()"><i
+                                        class="material-icons black-text">replay</i></a>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col s12">
+                        <p class="valign-wrapper teal-text">
+                            <i class="material-icons">help_outline</i>
+                            レベル表示の色はユーザ名の色と同期します
+                        </p>
+                    </div>
+                    <div class="col s12">
+                        <label>背景色</label>
+                        <select id="bg_color" class="browser-default">
+                            <optgroup label="白背景">
+                                <option value="bg-white-0" selected>ホワイト (透過 0%)</option>
+                                <option value="bg-white-20">ホワイト (透過 20%)</option>
+                                <option value="bg-white-40">ホワイト (透過 40%)</option>
+                                <option value="bg-white-60">ホワイト (透過 60%)</option>
+                                <option value="bg-white-80">ホワイト (透過 80%)</option>
+                            </optgroup>
+                            <optgroup label="黒背景">
+                                <option value="bg-black-0">ブラック (透過 0%)</option>
+                                <option value="bg-black-20">ブラック (透過 20%)</option>
+                                <option value="bg-black-40">ブラック (透過 40%)</option>
+                                <option value="bg-black-60">ブラック (透過 60%)</option>
+                                <option value="bg-black-80">ブラック (透過 80%)</option>
+                            </optgroup>
+                            <optgroup label="透明背景">
+                                <option value="bg-transparent">透明 (透過 100%)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4">
+                        <lable>文字の縁取り</lable>
+                        <select id="outline_size" class="browser-default">
+                            <option value="0" selected>0px (なし)</option>
+                            <option value="0.7px">0.7px</option>
+                            <option value="1px">1px</option>
+                            <option value="2px">2px</option>
+                            <option value="3px">3px</option>
+                            <option value="4px">4px</option>
+                            <option value="5px">5px</option>
+                        </select>
+                    </div>
+                    <div class="col s4">
+                        <span class="valign-wrapper" style="margin-top: 20px;">
+                            <input type="color" id="outline_color" name="outline_color" value="" disabled="true">
+                            <label class="black-text color_label">
+                                <span>縁取りの色</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <h5>フォント設定</h5>
+                    <div class="col s12 m6">
+                        <label>サイズ</label>
+                        <select class="browser-default" id="font_size">
+                            <option value="9px">9px</option>
+                            <option value="12px">12px</option>
+                            <option value="15px" selected>15px (Default)</option>
+                            <option value="18px">18px</option>
+                            <option value="21px">21px</option>
+                            <option value="24px">24px</option>
+                            <option value="32px">32px</option>
+                            <option value="36px">36px</option>
+                            <option value="42px">42px</option>
+                            <option value="48px">48px</option>
+                        </select>
+                    </div>
+                    <div class="col s12 m6">
+                        <label>標準フォント</label>
+                        <select class="browser-default" id="font_family">
+                            <optgroup label="Windowsデフォルト">
+                                <option value="Yu Gothic UI" selected>游ゴシックUI (Default)</option>
+                                <option value="Meiryo">メイリオ</option>
+                                <option value="Meiryo UI">メイリオUI</option>
+                                <option value="BIZ UDPGothic">BIZ UDPゴシック</option>
+                                <option value="UD Digi Kyokasho NP-B">UD デジタル教科書体 NP-B</option>
+                                <option value="Yu Mincho">游明朝</option>
+                            </optgroup>
+                            <optgroup label="Googleフォント">
+                                <option value="Noto Sans JP">Noto Sans JP</option>
+                                <option value="Kosugi Maru">小杉丸ゴシック</option>
+                                <option value="Yusei Magic">油性マジック</option>
+                                <option value="Stick">ステッキOne</option>
+                                <option value="RocknRoll One">ロックンロールOne</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col s12">
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" id="customfont_bool">
+                                <span>カスタムフォントを使用</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="custom_font" type="text" placeholder="UD Digi Kyokasho NK-B" disabled>
+                        <label for="custom_font">フォント名</label>
+                        <span class="helper-text" data-error="wrong"
+                            data-success="right">PCにインストールされたフォント名を入力してください</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col l12 xl7">
+                <h4>Preview</h4>
+                <div class="card-panel"
+                    style="background: repeating-linear-gradient(45deg, #a9a9a9 0px, #a9a9a9 15px, #696969 15px, #696969 30px)">
+                    <div class="mildom-chat-preview bzOwhh ycw4tr-1"
+                        style="border: dashed 1px black; background-color: white;">
+
+                        <div style="padding: 0px 17px;">
+                            <div class="sc-17i7c-1 jKYbnZ">
+                                <div class="text-message">
+                                    <span class="sc-1244qg5-0 kTJxQD">
+                                        <span class="user-info-wrap isUser">
+                                            <span class="chat-panel-medals"></span>
+                                            <div class="sc-1oendbw-0 gyqlDl"
+                                                style="margin: 0px 6px 0px 0px; display: inline-block; color: rgb(63, 201, 217); border-color: rgb(63, 201, 217);">
+                                                00</div>
+                                            <span class="sender" dir="ltr"
+                                                style="color: rgb(63, 201, 217);">UserName</span>
+                                        </span>
+                                    </span>
+                                    <span style="color: rgb(159, 159, 159); display: inline-block;">&nbsp;:&nbsp;</span>
+                                    <span class="sc-173ztwo-0 eLbnpt">
+                                        あのイーハトーヴォのすきとおった風
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 0px 21px;">
+                            <div class="sc-17i7c-1 jKYbnZ">
+                                <div class="text-message"><span class="sc-1244qg5-0 kTJxQD">
+                                        <span class="user-info-wrap isUser">
+                                            <span class="sc-1e94cvb-0 dqJpfd">
+                                                <span class="fans-group-badge user-info-wrap__fans-badge">
+                                                    <img src="https://wia.mildom.com/assets/static/fan_badge.png"
+                                                        alt="">
+                                                    <span class="fans-group-badge__text">サブスク</span></span></span>
+                                            <div class="sc-1oendbw-0 cekBll"
+                                                style="margin: 0px 6px 0px 0px; display: inline-block; color: rgb(245, 123, 123); border-color: rgb(245, 123, 123);">
+                                                000
+                                            </div>
+                                            <span class="sender" dir="ltr" style="color: rgb(245, 123, 123);">
+                                                ユーザ名
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span style="color: rgb(159, 159, 159); display: inline-block;">
+                                        &nbsp;:&nbsp;
+                                    </span>
+                                    <span class="sc-173ztwo-0 eLbnpt">
+                                        夏でも底に冷たさをもつ青いそら
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 0px 17px;">
+                            <div class="sc-17i7c-1 jKYbnZ">
+                                <div class="sc-1pw8g5f-0 fVVfnf">
+                                    <span class="sc-1244qg5-0 kTJxQD">
+                                        <span class="user-info-wrap isUser">
+                                            <span class="chat-panel-medals"></span>
+                                            <div class="sc-1oendbw-0 fdhYri"
+                                                style="margin: 0px 6px 0px 0px; display: inline-block; color: rgb(65, 208, 145); border-color: rgb(65, 208, 145);">
+                                                00</div>
+                                            <span class="sender" dir="ltr" style="color: rgb(65, 208, 145);">
+                                                入室ユーザ名
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="text" style="color: rgb(65, 208, 145);">
+                                        &nbsp;が入りました
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 0px 17px;">
+                            <div class="sc-17i7c-1 dldbux">
+                                <div class="text-message">
+                                    <span class="sc-1244qg5-0 kTJxQD">
+                                        <span class="user-info-wrap isUser">
+                                            <span class="chat-panel-medals">
+                                                <span class="user-info__host-icon">
+                                                    <div class="sc-8g96gk-0 drcQjJ">
+                                                        <img src="https://mildom.com/assets/svg/a0b0228b97e460a85c381aee84e0be23.svg"
+                                                            alt="">
+                                                    </div>
+                                                </span>
+                                            </span>
+                                            <div class="sc-1oendbw-0 iJlVqj"
+                                                style="margin: 0px 6px 0px 0px; display: inline-block; color: rgb(232, 111, 176); border-color: rgb(232, 111, 176);">
+                                                00</div>
+                                            <span class="sender" dir="ltr" style="color: rgb(232, 111, 176);">
+                                                UserName
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span style="color: rgb(159, 159, 159); display: inline-block;">&nbsp;:&nbsp;</span>
+                                    <span class="sc-173ztwo-0 ilMRgB">うつくしい森で飾られたモリーオ市
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 0px 17px;">
+                            <div class="sc-17i7c-1 jKYbnZ">
+                                <div class="text-message"><span class="sc-1244qg5-0 kTJxQD">
+                                        <span class="user-info-wrap isUser">
+                                            <span class="chat-panel-medals">
+                                                <span class="admin-medal-wrap">
+                                                    <div class="sc-8g96gk-0 drcQjJ">
+                                                        <img src="https://mildom.com//assets/svg/e8f778e71ad5a643e086e578355d837b.svg"
+                                                            alt="">
+                                                    </div>
+                                                </span>
+                                            </span>
+                                            <div class="sc-1oendbw-0 cekBll"
+                                                style="margin: 0px 6px 0px 0px; display: inline-block; color: rgb(245, 123, 123); border-color: rgb(245, 123, 123);">
+                                                000
+                                            </div>
+                                            <span class="sender" dir="ltr" style="color: rgb(245, 123, 123);">
+                                                ユーザ名
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span style="color: rgb(159, 159, 159); display: inline-block;">
+                                        &nbsp;:&nbsp;
+                                    </span>
+                                    <span class="sc-173ztwo-0 eLbnpt">
+                                        郊外のぎらぎらひかる草の波
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 0px 17px;">
+                            <div class="sc-17i7c-1 jKYbnZ">
+                                <div class="text-message">
+                                    <span class="sc-1244qg5-0 kTJxQD">
+                                        <span class="user-info-wrap isUser">
+                                            <span class="chat-panel-medals"></span>
+                                            <div class="sc-1oendbw-0 gyqlDl"
+                                                style="margin: 0px 6px 0px 0px; display: inline-block; color: rgb(63, 201, 217); border-color: rgb(63, 201, 217);">
+                                                00</div>
+                                            <span class="sender" dir="ltr"
+                                                style="color: rgb(63, 201, 217);">UserName</span>
+                                        </span>
+                                    </span>
+                                    <span style="color: rgb(159, 159, 159); display: inline-block;">&nbsp;:&nbsp;</span>
+                                    <span class="sc-173ztwo-0 eLbnpt">
+                                        またそのなかでいっしょになったたくさんのひとたち、ファゼーロとロザーロ、羊飼のミーロや、顔の赤いこどもたち、地主のテーモ
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 0px 17px;">
+                            <div class="sc-17i7c-1 jKYbnZ">
+                                <div class="text-message">
+                                    <span class="sc-1244qg5-0 kTJxQD">
+                                        <span class="user-info-wrap isUser">
+                                            <span class="chat-panel-medals"></span>
+                                            <div class="sc-1oendbw-0 gyqlDl"
+                                                style="margin: 0px 6px 0px 0px; display: inline-block; color: rgb(63, 201, 217); border-color: rgb(63, 201, 217);">
+                                                00</div>
+                                            <span class="sender" dir="ltr"
+                                                style="color: rgb(63, 201, 217);">UserName</span>
+                                        </span>
+                                    </span>
+                                    <span style="color: rgb(159, 159, 159); display: inline-block;">&nbsp;:&nbsp;</span>
+                                    <span class="sc-173ztwo-0 eLbnpt">
+                                        山猫博士のボーガント・デストゥパーゴなど、いまこの暗い巨きな石の建物のなかで考えていると、みんなむかし風のなつかしい青い幻燈のように思われます。
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="css_result" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        <h4>CSSがコピーされました</h4>
+                        <p>OBSのブラウザソース内のカスタムCSSへ貼り付けてください。</p>
+                        <textarea id="generate_css" class="materialize-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large teal pulse" id="generate" onclick="generate()">
+                <i class="large material-icons">get_app</i>
+            </a>
+        </div>
+        <div class="tap-target teal darken-1 white-text" data-target="generate">
+            <div class="tap-target-content">
+              <h5>CSS作成ボタン</h5>
+              <p>左側のメニューでカスタマイズ後、このボタンを押すことでCSSがクリップボードにコピーされます。</p>
+            </div>
+          </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+var bool_options = {
+    sender: true,
+    level: true,
+    subscribe: true,
+    streamer: true,
+    admin: true,
+    separator: true,
+    entered: true,
+    outline: false,
+    customfont: false
+}
+
+var color_options = {
+    sender: "#000000",
+    sender_reset: true,
+    separator: "#000000",
+    text: "#000000",
+    outline: "#000000"
+}
+
+var bg_options = {
+    "bg-white-0": "rgba(255, 255, 255, 1)",
+    "bg-white-20": "rgba(255, 255, 255, 0.8)",
+    "bg-white-40": "rgba(255, 255, 255, 0.6)",
+    "bg-white-60": "rgba(255, 255, 255, 0.4)",
+    "bg-white-80": "rgba(255, 255, 255, 0.2)",
+    "bg-black-0": "rgba(0, 0, 0, 1)",
+    "bg-black-20": "rgba(0, 0, 0, 0.8)",
+    "bg-black-40": "rgba(0, 0, 0, 0.6)",
+    "bg-black-60": "rgba(0, 0, 0, 0.4)",
+    "bg-black-80": "rgba(0, 0, 0, 0.2)",
+    "bg-transparent": "transparent"
+}
+
+var bg_color = "rgba(255, 255, 255, 1)"
+
+var outline_size = "1px"
+var width_size = "370px"
+var font_size = "15px"
+
+var font_family = "Yu Gothic UI"
+
+var google_font = {
+    "Noto Sans JP": "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');",
+    "Kosugi Maru": "@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');",
+    "Yusei Magic": "@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');",
+    "Stick": "@import url('https://fonts.googleapis.com/css2?family=Stick&display=swap');",
+    "RocknRoll One": "@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');"
+}
+
+var css_template
+
+function generate() {
+    css_template = `${google_font[font_family]?google_font[font_family]:""}
+body { background-color: transparent !important; }
+div.content { display: block !important; }
+div.gzfsNK, div.fwzdDC, div.esJYXy, div.bgLbXx, div#sidebar, div.JKLlz, div.csMNuF, div.hKxVsa, div.jHZfJz, .kqeaKU, .ekbleA{ display: none !important; }
+div.iTlshc { width: auto !important; }
+div.fIdaFb { background-color: transparent !important; }
+.message-list::-webkit-scrollbar { display:none !important; }
+/* プレミアムコメント */
+.sc-1448gr7-0 {
+    background-color: ${bg_color} !important;
+}
+/* コメント欄メインのCSS */
+div.ycw4tr-1{
+    max-width: initial !important;
+    padding: unset !important;
+    font-family: "${font_family}", Sans-Serif !important;
+    width: ${width_size} !important;
+    line-height: normal !imporant;
+    border: none !important;
+    background-color: ${bg_color} !important;
+    ${bool_options["outline"]? "text-shadow:0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]:""}
+}
+/* コメント本文 */
+span.sc-173ztwo-0{
+    color: ${color_options["text"]} !important;
+}
+/* コメント投稿者 */
+span.sender {
+    display: ${bool_options["sender"]? "initial" : "none"} !important;
+    ${color_options["sender_reset"]? '': 'color: '+color_options["sender"]+' !important;'}
+}
+/* 「：」表記 */
+.sc-1244qg5-0 + span {
+    display: ${bool_options["separator"]? "initial" : "none"} !important;
+    color: ${color_options["separator"]} !important;
+}
+/* 入室表記 */
+.sc-1pw8g5f-0 {
+    display: ${bool_options["separator"]? "initial" : "none"} !important;
+}
+/* コメント投稿者レベル */
+div.sc-1oendbw-0 {
+    display:${bool_options["level"]? "initial" : "none"} !important;
+    ${color_options["sender_reset"]? '': 'color: '+color_options["sender"]+'!important;'}
+    ${color_options["sender_reset"]? '': 'border-color: '+color_options["sender"]+' !important;'}
+}
+/* サブスクライバー表記 */
+span.dqJpfd {
+    display: ${bool_options["subscribe"]? "initial" : "none"} !important
+}
+/* 配信者表記 */
+span.user-info__host-icon {
+    display: ${bool_options["streamer"]? "initial" : "none"} !important
+}
+/* 管理者表記 */
+span.admin-medal-wrap {
+    display: ${bool_options["admin"]? "initial" : "none"} !important
+}
+`
+
+    $('#generate_css').val(css_template)
+    $('#css_result').modal('open')
+    $('#generate_css').select()
+    document.execCommand("copy");
+    setTimeout(()=>{$('#css_result').modal('close')}, 4000)
+}

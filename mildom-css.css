@@ -1,0 +1,86 @@
+body {
+    background-color: transparent !important;
+}
+
+div.content {
+    display: block !important;
+}
+
+div.gzfsNK, div.fwzdDC{
+    display: none !important;
+}
+
+div.esJYXy {
+    display: none !important;
+}
+
+div.bgLbXx {
+    display: none !important;
+}
+
+div.iTlshc {
+    width: auto !important;
+}
+
+div.fIdaFb {
+    background-color: transparent !important;
+}
+
+div#sidebar {
+    display:none !important;
+}
+
+div.jmBdIv, div.bzOwhh{
+    /* コメント欄メインのCSS */
+    max-width: initial !important;
+    padding: unset !important;
+    width: 100%;
+    border: none !important;
+    background-color: white !important;
+}
+
+div.JKLlz, div.csMNuF {
+    display: none !important;
+}
+
+div.hKxVsa, div.jHZfJz {
+    display: none !important;
+}
+
+.message-list::-webkit-scrollbar {
+    display:none !important;
+}
+
+.kqeaKU {
+    display: none !important;
+}
+
+/* 福引 */
+.ekbleA {
+    display: none !important;
+}
+
+/* コメント本文 */
+span.ilMRgB, span.eLbnpt{
+    color: white !important;
+}
+
+/* コメント投稿者 */
+span.sender {
+    color: aquamarine !important;
+}
+
+/* コメント投稿者レベル */
+div.sc-1oendbw-0 {
+    display:none !important;
+}
+
+/* サブスクライバー表記 */
+span.dqJpfd {
+    display: none !important
+}
+
+/* 配信者・管理者表記 */
+span.chat-panel-medals {
+    display: none !important
+}
