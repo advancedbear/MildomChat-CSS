@@ -37,6 +37,8 @@ var bg_color = "rgba(255, 255, 255, 1)"
 var outline_size = "1px"
 var width_size = "370px"
 var font_size = "15px"
+var padding_top = "12px"
+var padding_bottom = "12px"
 
 var font_family = "Yu Gothic UI"
 
@@ -54,24 +56,49 @@ function generate() {
     css_template = `${google_font[font_family]?google_font[font_family]:""}
 body { background-color: transparent !important; }
 div.content { display: block !important; }
-div.gzfsNK, div.fwzdDC, div.esJYXy, div.bgLbXx, div#sidebar, div.JKLlz, div.csMNuF, div.hKxVsa, div.jHZfJz, .kqeaKU, .ekbleA{ display: none !important; }
-div.iTlshc { width: auto !important; }
+div.gzfsNK, div.fwzdDC, div.esJYXy, div.bgLbXx, div#sidebar, div.JKLlz, div.csMNuF, div.hKxVsa, div.jHZfJz, .kqeaKU, .ekbleA, .sc-1s65pk3-0{ display: none !important; }
+div.iTlshc { width: ${width_size} !important; }
 div.fIdaFb { background-color: transparent !important; }
 .message-list::-webkit-scrollbar { display:none !important; }
+.chat-panel___mention-follow-panel { display: none !important; }
+.sc-1432w4k-0 { left: unset !important; }
+.xb72g0-2 { width: unset !important; }
 /* プレミアムコメント */
 .sc-1448gr7-0 {
     background-color: ${bg_color} !important;
 }
+/* ギフト全画面エモート */
+.canvas-box { 
+    left: unset !important;
+    top: unset !important;
+    width: ${width_size} !important;
+    height: 100% !important;
+}
+canvas.room-chat-player__level3 {
+    width: ${width_size} !important;
+    left: 25% !important;
+}
+/* 今週のランキング */
+.sc-2it59z-0, .sc-2it59z-0+div {
+    display: none !important;
+}
 /* コメント欄メインのCSS */
 div.ycw4tr-1{
     max-width: initial !important;
+    margin: unset !important;
     padding: unset !important;
     font-family: "${font_family}", Sans-Serif !important;
+    font-size: ${font_size} !important;
     width: ${width_size} !important;
-    line-height: normal !imporant;
+    line-height: normal !important;
     border: none !important;
     background-color: ${bg_color} !important;
     ${bool_options["outline"]? "text-shadow:0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]+",0 0 "+outline_size+" "+color_options["outline"]:""}
+}
+.message-list { 
+    font-size: ${font_size} !important;
+    padding-top: ${padding_top} !important;
+    padding-bottom: ${padding_bottom} !important;
 }
 /* コメント本文 */
 span.sc-173ztwo-0{
