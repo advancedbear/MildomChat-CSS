@@ -72,11 +72,9 @@ div.fIdaFb { background-color: transparent !important; }
     left: unset !important;
     top: unset !important;
     width: ${width_size} !important;
-    height: 100% !important;
 }
 canvas.room-chat-player__level3 {
     width: ${width_size} !important;
-    left: 25% !important;
 }
 /* 今週のランキング */
 .sc-2it59z-0, .sc-2it59z-0+div {
